@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online BMI Calculator | Health & Wellness</title>
+    <!-- jQuery Library -->
+    <script src="https://jquery.com"></script>
+    <style>
+        body { 
+            background-color: #f4f6f9; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #212529;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .calculator-card { 
+            background: white;
+            padding: 2rem; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #475569;
+        }
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        button { 
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.85rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+        .result-box { 
+            display: none; 
+            margin-top: 1.5rem; 
+            padding: 1rem; 
+            border-radius: 6px; 
+            text-align: center; 
+            font-weight: bold; 
+        }
+        .bg-success { background-color: #d1fae5; color: #065f46; }
+        .bg-warning { background-color: #fef3c7; color: #92400e; }
+        .bg-danger { background-color: #fee2e2; color: #991b1b; }
+        
+        .ad-placeholder { 
+            max-width: 728px; 
+            margin: 2rem auto; 
+            background: #e2e8f0; 
+            border: 2px dashed #cbd5e1; 
+            padding: 1.5rem; 
+            text-align: center; 
+            color: #64748b; 
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>FitLife Tools</nav>
+
+    <div class="ad-placeholder">
+        <h4 style="margin: 0 0 0.5rem 0;">Advertisement Space</h4>
+        <p style="margin: 0; font-size: 0.9rem;">Place your Google AdSense banner code here to earn money per view.</p>
+    </div>
+
+    <div class="container">
+        <div class="calculator-card">
+            <h2>BMI Calculator</h2>
+            
+            <div class="form-group">
+                <label for="txbHeight">Height (cm)</label>
+                <input type="number" id="txbHeight" placeholder="e.g., 175" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="txbWeight">Weight (kg)</label>
+                <input type="number" id="txbWeight" placeholder="e.g., 70" required>
+            </div>
+            
+            <button id="ButtonCal">Calculate BMI</button>
+
+            <div id="resultSection" class="result-box">
+                <div id="bmiValue" style="font-size: 1.5rem; margin-bottom: 0.25rem;"></div>
+                <div id="bmiStatus" style="font-size: 1.1rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $('#ButtonCal').click(function () {
+                var heightCm = parseFloat($('#txbHeight').val());
+                var weight = parseFloat($('#txbWeight').val());
+
+                if (!heightCm || !weight || heightCm <= 0 || weight <= 0) {
+                    alert('Please enter valid numbers.');
+                    return;
+                }
+
+                var heightM = heightCm / 100;
+                var bmi = (weight / (heightM * heightM)).toFixed(1);
+                var status = "";
+                var colorClass = "";
+
+                if (bmi < 18.5) {
+                    status = "Underweight";
+                    colorClass = "bg-warning";
+                } else if (bmi >= 18.5 && bmi <= 24.9) {
+                    status = "Normal Weight (Healthy)";
+                    colorClass = "bg-success";
+                } else if (bmi >= 25 && bmi <= 29.9) {
+                    status = "Overweight";
+                    colorClass = "bg-warning";
+                } else {
+                    status = "Obese";
+                    colorClass = "bg-danger";
+                }
+
+                $('#bmiValue').text("Your BMI: " + bmi);
+                $('#bmiStatus').text(status);
+                $('#resultSection').removeClass('bg-success bg-warning bg-danger').addClass('result-box ' + colorClass).slideDown();
+            });
+        });
+    </script>
+
+</body>
+</html>
