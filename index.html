@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-
-<script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
-
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- GOOGLE ADSENSE CODE CONNECTED -->
+<script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
+
     
     <!-- SEARCH ENGINE OPTIMIZATION (SEO) META TAGS -->
     <title>Free Online BMI Calculator, Calorie Counter & Fitness Tools</title>
@@ -13,7 +14,6 @@
     <meta name="keywords" content="BMI calculator, free calorie counter, water intake tracker, health tools, weight loss calculator, fitness hub online">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://github.io">
-
 
     <!-- jQuery Library -->
     <script src="https://jquery.com"></script>
@@ -243,9 +243,3 @@
                 $('#bmiValue').text("Your BMI: " + bmi);
                 $('#bmiStatus').text(status);
                 $('#resultSection').removeClass('bg-success bg-warning bg-danger').addClass('result-box ' + colorClass).slideDown();
-            });
-
-            // 2. Calorie Calculation Code
-            $('#ButtonCalorie').click(function () {
-                var gender = $('#calGender').val();
-                var age = parseFloat($('#calAge').val());
