@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalsTracker Portal</title>
+    
+    <!-- GOOGLE ADSENSE CODE SNIPPET FOR ROOT DOMAIN VERIFICATION -->
+    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 50px; background-color: #f3f4f6; color: #374151;">
+    <h1>Welcome to VitalsTracker Pro Portal</h1>
+    <p>Your ultimate mobile all-in-one health monitoring utility ecosystem.</p>
+    <p style="margin-top: 30px;">
+        <a href="./vitals-tracker/" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Go to Health Dashboard App →</a>
+    </p>
+</body>
+</html>
