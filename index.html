@@ -3,244 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack: Body Mass Index (BMI) Calculator & Weight Tracker</title>
+    <meta name="description" content="Calculate your Body Mass Index (BMI) instantly. Track your health, monitor weight categories, and get personalized weight management insights.">
     
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9659641195994032"
-     crossorigin="anonymous"></script>
+    <!-- Google AdSense Code Placeholder -->
+    <!-- 
+    <script async src="https://googlesyndication.com" crossorigin="anonymous"></script> 
+    -->
 
-    <meta name="google-adsense-account" content="ca-pub-9659641195994032">
-
-    <!-- SEARCH ENGINE OPTIMIZATION (SEO) META TAGS -->
-    <title>Free Online BMI Calculator, Calorie Counter & Fitness Tools</title>
-    <meta name="description" content="Calculate your Body Mass Index (BMI), track daily calorie intake goals, and monitor water consumption with our free online fitness tools. Fast, accurate, and easy to use.">
-    <meta name="keywords" content="BMI calculator, free calorie counter, water intake tracker, health tools, weight loss calculator, fitness hub online">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://github.io">
-
-    <!-- jQuery Library -->
-    <script src="https://jquery.com"></script>
-    
     <style>
-        body { 
-            background-color: #f4f6f9; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary: #2b6cb0;
+            --secondary: #319795;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --success: #38a169;
+            --warning: #dd6b20;
+            --danger: #e53e3e;
         }
-        nav {
-            background-color: #1e293b;
-            color: white;
-            padding: 1.25rem;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .tool-card { 
-            background: white;
-            padding: 2.2rem; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
-            margin-bottom: 2.5rem;
-        }
-        h2 {
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            color: #0f172a;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
-        }
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #475569;
-        }
-        input, select {
-            width: 100%;
-            padding: 0.75rem;
-            font-size: 1rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            box-sizing: border-box;
-            background-color: #fff;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 241, 0.1);
-        }
-        button { 
-            width: 100%;
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            padding: 0.9rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background-color: #1d4ed8;
-        }
-        .result-box { 
-            display: none; 
-            margin-top: 1.5rem; 
-            padding: 1.25rem; 
-            border-radius: 6px; 
-            text-align: center; 
-            font-weight: bold; 
-        }
-        .bg-success { background-color: #d1fae5; color: #065f46; }
-        .bg-warning { background-color: #fef3c7; color: #92400e; }
-        .bg-danger { background-color: #fee2e2; color: #991b1b; }
-        .bg-info { background-color: #e0f2fe; color: #0369a1; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: var(--light); color: var(--dark); line-height: 1.6; padding-bottom: 40px; }
         
-        /* MONETIZATION PLACEMENT STYLING */
-        .ad-placeholder { 
-            max-width: 728px; 
-            margin: 2rem auto; 
-            background: #e2e8f0; 
-            border: 2px dashed #cbd5e1; 
-            padding: 1.5rem; 
-            text-align: center; 
-            color: #64748b; 
-            border-radius: 8px;
-        }
-        .water-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; text-align: center; padding: 50px 20px; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr; gap: 30px; }
+        @media(min-width: 768px) { .container { grid-template-columns: 2fr 1fr; } }
+
+        /* AdSense Banners */
+        .adsense-slot { background: #edf2f7; border: 1px dashed #cbd5e0; text-align: center; padding: 15px; margin: 20px 0; color: #718096; font-size: 0.85rem; border-radius: 6px; min-height: 90px; display: flex; align-items: center; justify-content: center; }
+
+        /* Calculator App Box */
+        .calc-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .toggle-container { display: flex; gap: 10px; margin-bottom: 25px; }
+        .toggle-btn { flex: 1; padding: 10px; border: 1px solid #cbd5e0; background: white; cursor: pointer; border-radius: 6px; font-weight: 600; transition: 0.2s; }
+        .toggle-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+        .input-group input { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 1rem; }
+        
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        .action-btn { width: 100%; padding: 14px; background: var(--secondary); color: white; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+        .action-btn:hover { background: #287e7c; }
+
+        /* Results Box */
+        .result-box { margin-top: 30px; padding: 20px; border-radius: 8px; display: none; text-align: center; }
+        .result-num { font-size: 3rem; font-weight: 800; line-height: 1; margin: 10px 0; }
+        .result-status { font-size: 1.3rem; font-weight: bold; text-transform: uppercase; }
+
+        /* Educational Article */
+        .info-section { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); margin-top: 30px; }
+        .info-section h2 { color: var(--primary); margin-bottom: 15px; font-size: 1.6rem; border-bottom: 2px solid #edf2f7; padding-bottom: 8px; }
+        .info-section p { margin-bottom: 15px; color: #4a5568; }
+        .info-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .info-table th, .info-table td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .info-table th { background: #f7fafc; color: var(--dark); }
+
+        /* Sidebar Widgets */
+        aside { display: flex; flex-direction: column; gap: 30px; }
+        .widget { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        .widget h3 { color: var(--dark); margin-bottom: 12px; font-size: 1.2rem; }
+        .widget ul { padding-left: 20px; color: #4a5568; }
+        .widget li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
 
-    <nav>FitLife Premium Web Tools</nav>
-
-    <!-- TOP HEADER AD LAYOUT -->
-    <div class="ad-placeholder" id="adsense-top">
-        <h4 style="margin: 0 0 0.5rem 0;">Google AdSense Banner Space (Top)</h4>
-        <p style="margin: 0; font-size: 0.9rem;">High-visibility banner container designed for maximum click-through rates.</p>
-    </div>
+    <header>
+        <h1>FitTrack BMI Dashboard</h1>
+        <p>Calculate, Understand, and Optimize Your Body Mass Index Instantly</p>
+    </header>
 
     <div class="container">
-        
-        <!-- TOOL 1: BMI CALCULATOR -->
-        <div class="tool-card">
-            <h2>1. Body Mass Index (BMI) Calculator</h2>
-            <div class="form-group">
-                <label for="txbHeight">Height (cm)</label>
-                <input type="number" id="txbHeight" placeholder="e.g., 175" required>
-            </div>
-            <div class="form-group">
-                <label for="txbWeight">Weight (kg)</label>
-                <input type="number" id="txbWeight" placeholder="e.g., 70" required>
-            </div>
-            <button id="ButtonCal">Calculate BMI</button>
-            <div id="resultSection" class="result-box">
-                <div id="bmiValue" style="font-size: 1.5rem; margin-bottom: 0.25rem;"></div>
-                <div id="bmiStatus" style="font-size: 1.1rem;"></div>
-            </div>
-        </div>
+        <main>
+            <!-- AdSense Top Banner -->
+            <div class="adsense-slot">[Google AdSense - Header Banner]</div>
 
-        <!-- MID-PAGE AD LAYOUT -->
-        <div class="ad-placeholder" id="adsense-middle">
-            <h4 style="margin: 0 0 0.5rem 0;">Google AdSense Banner Space (Middle)</h4>
-            <p style="margin: 0; font-size: 0.9rem;">In-content ad placement to monetize users scrolling between apps.</p>
-        </div>
+            <div class="calc-box">
+                <div class="toggle-container">
+                    <button type="button" class="toggle-btn active" id="metric-tab" onclick="switchUnit('metric')">Metric (kg/cm)</button>
+                    <button type="button" class="toggle-btn" id="imperial-tab" onclick="switchUnit('imperial')">Imperial (lbs/in)</button>
+                </div>
 
-        <!-- TOOL 2: CALORIE COUNTER -->
-        <div class="tool-card">
-            <h2>2. Daily Calorie Target Counter</h2>
-            <div class="form-group">
-                <label for="calGender">Biological Gender</label>
-                <select id="calGender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="calAge">Age (Years)</label>
-                <input type="number" id="calAge" placeholder="e.g., 25" required>
-            </div>
-            <div class="form-group">
-                <label for="calHeight">Height (cm)</label>
-                <input type="number" id="calHeight" placeholder="e.g., 175" required>
-            </div>
-            <div class="form-group">
-                <label for="calWeight">Weight (kg)</label>
-                <input type="number" id="calWeight" placeholder="e.g., 70" required>
-            </div>
-            <div class="form-group">
-                <label for="calActivity">Daily Activity Level</label>
-                <select id="calActivity">
-                    <option value="1.2">Sedentary (Little or no exercise)</option>
-                    <option value="1.375">Lightly Active (Light exercise 1-3 days/week)</option>
-                    <option value="1.55">Moderately Active (Moderate exercise 3-5 days/week)</option>
-                    <option value="1.725">Very Active (Hard exercise 6-7 days/week)</option>
-                </select>
-            </div>
-            <button id="ButtonCalorie">Calculate Daily Calories</button>
-            <div id="calorieResult" class="result-box bg-info">
-                <div id="calorieValue" style="font-size: 1.4rem;"></div>
-            </div>
-        </div>
+                <form id="bmiForm" onsubmit="calculateBMI(event)">
+                    <!-- Metric Unit Controls -->
+                    <div id="metric-inputs">
+                        <div class="input-group">
+                            <label for="weight-metric">Weight (kg)</label>
+                            <input type="number" id="weight-metric" step="0.1" placeholder="e.g., 70">
+                        </div>
+                        <div class="input-group">
+                            <label for="height-metric">Height (cm)</label>
+                            <input type="number" id="height-metric" placeholder="e.g., 175">
+                        </div>
+                    </div>
 
-        <!-- TOOL 3: WATER INTAKE TRACKER -->
-        <div class="tool-card">
-            <h2>3. Daily Water Intake Tracker</h2>
-            <p style="color: #475569; margin-bottom: 1.5rem;">Track your progress toward the recommended target of <strong>2,500 ml</strong> of water daily.</p>
-            <div style="text-align: center; margin-bottom: 1.5rem;">
-                <span style="font-size: 1.1rem; color: #475569;">Total Consumed:</span>
-                <div id="waterProgress" style="font-size: 2.5rem; font-weight: bold; color: #2563eb; margin: 0.5rem 0;">0 / 2500 ml</div>
-            </div>
-            <div class="water-buttons">
-                <button id="addGlass" style="background-color: #0284c7;">+ Add 250ml Glass</button>
-                <button id="resetWater" style="background-color: #64748b;">Reset Tracker</button>
-            </div>
-        </div>
+                    <!-- Imperial Unit Controls -->
+                    <div id="imperial-inputs" style="display: none;">
+                        <div class="input-group">
+                            <label for="weight-imperial">Weight (lbs)</label>
+                            <input type="number" id="weight-imperial" step="0.1" placeholder="e.g., 154">
+                        </div>
+                        <div class="row">
+                            <div class="input-group">
+                                <label for="height-ft">Height (Feet)</label>
+                                <input type="number" id="height-ft" placeholder="e.g., 5">
+                            </div>
+                            <div class="input-group">
+                                <label for="height-in">Height (Inches)</label>
+                                <input type="number" id="height-in" placeholder="e.g., 9">
+                            </div>
+                        </div>
+                    </div>
 
+                    <button type="submit" class="action-btn">Calculate Your BMI</button>
+                </form>
+
+                <!-- Dynamic Output Area -->
+                <div id="bmiResult" class="result-box">
+                    <p>Your Body Mass Index is:</p>
+                    <div id="bmiNum" class="result-num">22.5</div>
+                    <div id="bmiStatus" class="result-status">Normal Weight</div>
+                </div>
+            </div>
+
+            <!-- AdSense Middle Ad Banner -->
+            <div class="adsense-slot">[Google AdSense - In-Article Native Ad]</div>
+
+            <!-- SEO Content Base for AdSense Review Alignment -->
+            <div class="info-section">
+                <h2>What is Body Mass Index (BMI)?</h2>
+                <p>Body Mass Index (BMI) is a standardized screening metric used globally by health professionals to estimate whether an individual falls within safe body mass boundaries relative to their height. Developed by Lambert Adolphe Quetelet, it offers a quick calculation to flag potential weight risk indicators.</p>
+                
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>BMI Range</th>
+                            <th>Weight Status Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="color: var(--primary);"><td>Below 18.5</td><td>Underweight</td></tr>
+                        <tr style="color: var(--success);"><td>18.5 – 24.9</td><td>Normal / Healthy Weight</td></tr>
+                        <tr style="color: var(--warning);"><td>25.0 – 29.9</td><td>Overweight</td></tr>
+                        <tr style="color: var(--danger);"><td>30.0 and Above</td><td>Obesity</td></tr>
+                    </tbody>
+                </table>
+
+                <h2>Understanding Your Results</h2>
+                <p>While BMI is a highly efficient public health classification utility, it is important to remember it does not map body composition details directly, such as muscle mass versus adipose tissue distributions. Athletes or individuals with heavily developed frames can sometimes present high BMI values without experiencing corresponding cardiometabolic health risks.</p>
+            </div>
+        </main>
+
+        <aside>
+            <div class="widget">
+                <h3>Health Track Resources</h3>
+                <ul>
+                    <li>Balanced nutrition strategies</li>
+                    <li>Daily metabolic rate indexes</li>
+                    <li>Cardiovascular tracking guides</li>
+                    <li>Hydration tracking metrics</li>
+                </ul>
+            </div>
+            
+            <!-- Sticky Sidebar Ad Slot -->
+            <div class="adsense-slot" style="min-height: 450px;">[Google AdSense - Vertical Banner]</div>
+        </aside>
     </div>
 
-    <footer>
-        <p>&copy; 2026 FitLife Tools Hub. All health utilities are free for public use.</p>
-    </footer>
-
-    <!-- INTERACTIVE ENGINE LOGIC -->
+    <!-- Interactive Scripting Engine -->
     <script>
-        $(function () {
-            // 1. BMI Calculation Code
-            $('#ButtonCal').click(function () {
-                var heightCm = parseFloat($('#txbHeight').val());
-                var weight = parseFloat($('#txbWeight').val());
-                if (!heightCm || !weight || heightCm <= 0 || weight <= 0) {
-                    alert('Please enter valid height and weight values.');
-                    return;
-                }
-                var heightM = heightCm / 100;
-                var bmi = (weight / (heightM * heightM)).toFixed(1);
-                var status = ""; var colorClass = "";
-                if (bmi < 18.5) { status = "Underweight"; colorClass = "bg-warning"; }
-                else if (bmi >= 18.5 && bmi <= 24.9) { status = "Normal Weight (Healthy)"; colorClass = "bg-success"; }
-                else if (bmi >= 25 && bmi <= 29.9) { status = "Overweight"; colorClass = "bg-warning"; }
-                else { status = "Obese"; colorClass = "bg-danger"; }
-                $('#bmiValue').text("Your BMI: " + bmi);
-                $('#bmiStatus').text(status);
-                $('#resultSection').removeClass('bg-success bg-warning bg-danger').addClass('result-box ' + colorClass).slideDown();
+        let currentUnit = 'metric';
+
+        function switchUnit(unit) {
+            currentUnit = unit;
